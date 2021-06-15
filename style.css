@@ -1,0 +1,219 @@
+  *,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: linear-gradient(to bottom right, #1cacf4, #1c04fc);
+  height: 100vh;
+  max-width: 800px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: Roboto, sans-serif;
+  text-align: center;
+  font-weight: 300;
+  line-height: 1.6;
+  position: relative;
+}
+
+.problem {
+  position: relative;
+  overflow: hidden;
+  padding: 40px;
+  color: white;
+  border-radius: 10px;
+  margin: 20px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2), inset 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.blur-tile {
+  position: absolute;
+  filter: blur(50px);
+  top: -30px;
+  right: -30px;
+  bottom: -30px;
+  left: -30px;
+  background: rgba(255, 255, 255, 0.15);
+  color: red;
+  z-index: -5;
+}
+
+@keyframes pop {
+  from {
+    opacity: 0.2;
+    transform: scale(0.3);
+/*     filter: blur(10px); */
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+/*     filter: blur(0px); */
+  }
+}
+
+@keyframes blurBg {
+  from {
+    filter: blur(0px) saturate(1);
+  }
+  to {
+    filter: blur(5px) saturate(0.1);
+  }
+}
+
+@keyframes err {
+  30% {
+    color: red;
+    transform-origin: center;
+    transform: translateX(-10px) scale(0.9) rotate(-5deg);
+  }
+
+  50% {
+    color: white;
+    transform-origin: center;
+    transform: translateX(10px) scale(1.1) rotate(0deg);
+  }
+
+  70% {
+    color: red;
+    transform-origin: center;
+    transform: translateX(-10px) scale(0.9) rotate(5deg);
+  }
+}
+
+.error {
+  transform-origin: center;
+  animation: err 0.5s ease-in-out infinite;
+}
+
+.blur {
+  animation: blurBg 0.3s forwards ease-in;
+}
+
+.question {
+  font-size: 75px;
+  font-weight: 900;
+  line-height: 1;
+  margin-bottom: 20px;
+  text-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.problem form * {
+  display: block;
+  margin: 0 auto 20px;
+}
+
+.problem form input {
+  background: transparent;
+  padding: 5px 12px;
+  outline: none;
+  border: none;
+  border-bottom: 2px solid white;
+  width: 80%;
+  box-shadow: 0 8px 4px -4px rgba(0, 0, 0, 0.15);
+  font-size: 22px;
+  color: white;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+.problem form input:active,
+.problem form input:focus {
+  box-shadow: 0 8px 6px -4px rgba(0, 0, 0, 0.3);
+}
+
+.problem form input::placeholder {
+  color: rgba(255, 255, 255, 0.3);
+  font-size: 14px;
+  text-align: center;
+}
+
+button {
+  font-family: Roboto, sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  text-transform: uppercase;
+  outline: none;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  background: #000;
+  padding: 10px 20px;
+  background: linear-gradient(to bottom right, #e6e603, #f6951b);
+  text-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+  transition: padding 0.2s;
+}
+
+button:focus {
+  outline: none;
+  border: none;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+}
+
+.progress {
+  height: 10px;
+  width: 100%;
+  margin: 20px auto;
+  position: relative;
+  overflow: hidden;
+}
+
+.boxes {
+  display: flex;
+  height: 100%;
+}
+
+.box {
+  height: 100%;
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  flex-grow: 1;
+}
+
+.progress-bar {
+  position: absolute;
+  background: #04e474;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: -1;
+  transform-origin: left;
+  transform: scaleX(0);
+  transition: transform 0.2s ease-in-out;
+}
+
+.overlay {
+  position: fixed;
+  background: rgba(0, 0, 0, 0.3);
+  width: 100vw;
+  height: 100vh;
+  color: white;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-weight: 900;
+  animation: pop 0.5s ease-in-out;
+}
+
+.hid {
+  animation: pop 2s ease-out;
+  display: none;
+}
+
+.game-status {
+  font-size: 40px;
+  text-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+  margin-bottom: 10px;
+}
+
+.overlay button {
+  font-size: 40px;
+  font-size: 25px;
+}
